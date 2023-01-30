@@ -42,26 +42,3 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
-$SnSclient = new SnsClient([
-    'profile' => 'default',
-    'region' => 'us-east-1',
-    'version' => '2010-03-31'
-]);
-
-$protocol = 'email';
-$endpoint = 'sample@example.com';
-$topic = 'arn:aws:sns:us-east-1:111122223333:MyTopic';
-
-try {
-    $result = $SnSclient->subscribe([
-        'Protocol' => $protocol,
-        'Endpoint' => $endpoint,
-        'ReturnSubscriptionArn' => true,
-        'TopicArn' => $topic,
-    ]);
-    var_dump($result);
-} catch (AwsException $e) {
-    // output error message if fails
-    error_log($e->getMessage());
-}
